@@ -6,8 +6,8 @@
   <title>Dashboard - HWMS</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
-  <link href="css/layout.css" rel="stylesheet"/>
-  <link href="css/dashboard.css" rel="stylesheet"/>
+  <link href="static/css/layout.css" rel="stylesheet"/>
+  <link href="static/css/dashboard.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 <div class="shell">
 
   <aside class="sidebar" id="sidebar">
-    <a href="dashboard.html" class="sidebar-brand">
+    <a href="templates/dashboard.html" class="sidebar-brand">
       <div class="brand-icon"><i class="bi bi-heart-pulse-fill"></i></div>
       <div>
         <div class="brand-name">HWMS</div>
@@ -31,10 +31,10 @@
 
     <nav class="nav-list">
       <div class="nav-label">Main Menu</div>
-      <a href="dashboard.html" class="nav-item active"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-      <a href="workforce.html" class="nav-item"><i class="bi bi-people"></i> Workforce</a>
-      <a href="attendance_leave.html" class="nav-item"><i class="bi bi-calendar-check"></i> Attendance &amp; Leave</a>
-      <a href="training_reports.html" class="nav-item"><i class="bi bi-mortarboard"></i> Training &amp; Reports</a>
+      <a href="templates/dashboard.html" class="nav-item active"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a href="templates/workforce.html" class="nav-item"><i class="bi bi-people"></i> Workforce</a>
+      <a href="templates/attendance_leave.html" class="nav-item"><i class="bi bi-calendar-check"></i> Attendance &amp; Leave</a>
+      <a href="templates/training_reports.html" class="nav-item"><i class="bi bi-mortarboard"></i> Training &amp; Reports</a>
     </nav>
 
     <div class="sidebar-footer">
@@ -225,7 +225,7 @@
           <div class="card">
             <div class="card-head">
               <span class="card-title">Recent Leave Requests</span>
-              <a href="attendance_leave.html" class="btn-outline" style="font-size:.78rem">View all</a>
+              <a href="templates/attendance_leave.html" class="btn-outline" style="font-size:.78rem">View all</a>
             </div>
             <div class="recent-list" id="recentLeaveList">
               <div class="recent-item">
@@ -268,7 +268,7 @@
           <div class="card">
             <div class="card-head">
               <span class="card-title">Burnout Risk Summary</span>
-              <a href="training_reports.html" class="btn-outline" style="font-size:.78rem">Full report</a>
+              <a href="templates/training_reports.html" class="btn-outline" style="font-size:.78rem">Full report</a>
             </div>
             <div style="padding:1.25rem">
               <div class="burnout-row">
@@ -308,7 +308,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-<script src="js/layout.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="static/js/layout.js"></script>
+<script src="static/js/dashboard.js"></script>
 </body>
 </html>
