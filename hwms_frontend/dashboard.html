@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - HWMS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="css/layout.css" rel="stylesheet"/>
+  <link href="css/dashboard.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="toast-wrap" id="toastWrap">
+  <i class="bi" id="toastIcon"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+      <div class="brand-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+      <div>
+        <div class="brand-name">HWMS</div>
+        <div class="brand-sub">Healthcare Workforce</div>
+      </div>
+    </a>
+
+    <nav class="nav-list">
+      <div class="nav-label">Main Menu</div>
+      <a href="dashboard.html" class="nav-item active"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a href="workforce.html" class="nav-item"><i class="bi bi-people"></i> Workforce</a>
+      <a href="attendance_leave.html" class="nav-item"><i class="bi bi-calendar-check"></i> Attendance &amp; Leave</a>
+      <a href="training_reports.html" class="nav-item"><i class="bi bi-mortarboard"></i> Training &amp; Reports</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-avatar" id="sfAvatar">A</div>
+      <div>
+        <div class="user-name" id="sfName">Admin User</div>
+        <div class="user-role" id="sfRole">Admin</div>
+      </div>
+      <button class="logout-btn" id="logoutBtn" aria-label="Logout">
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <i class="bi bi-list"></i>
+        </button>
+        <div>
+          <div class="page-title">Dashboard</div>
+          <div class="page-sub">Welcome back - here's what's happening today</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" aria-label="Notifications">
+          <i class="bi bi-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="top-avatar" id="topAvatar">A</div>
+        <div class="top-user d-none d-md-block">
+          <div class="top-name" id="topName">Admin User</div>
+          <div class="top-role" id="topRole">Admin</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-body">
+
+      <div class="row g-3 mb-4" id="adminStatsRow">
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#E1F5EE;color:#0F6E56">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value" id="statEmployees">—</div>
+              <div class="stat-label">Total Employees</div>
+              <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>+4 this month</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#EAF3DE;color:#3B6D11">
+              <i class="bi bi-person-check-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value" id="statPresent">—</div>
+              <div class="stat-label">Present Today</div>
+              <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>81% attendance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#FAEEDA;color:#854F0B">
+              <i class="bi bi-calendar-x-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value" id="statLeaves">—</div>
+              <div class="stat-label">Pending Leaves</div>
+              <div class="stat-delta down"><i class="bi bi-arrow-up-short"></i>+3 since yesterday</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#FAECE7;color:#99351D">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value" id="statBurnout">—</div>
+              <div class="stat-label">High Burnout Risk</div>
+              <div class="stat-delta down"><i class="bi bi-arrow-down-short"></i>-2 from last week</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row g-3 mb-4 d-none" id="personalStatsRow">
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#EAF3DE;color:#3B6D11">
+              <i class="bi bi-person-check-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value">Present</div>
+              <div class="stat-label">Today's Status</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#FAEEDA;color:#854F0B">
+              <i class="bi bi-calendar-x-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value">1</div>
+              <div class="stat-label">My Pending Leaves</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#E6F1FB;color:#185FA5">
+              <i class="bi bi-clock-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value">Morning</div>
+              <div class="stat-label">Current Shift</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#EAF3DE;color:#3B6D11">
+              <i class="bi bi-shield-check-fill"></i>
+            </div>
+            <div>
+              <div class="stat-value">Low</div>
+              <div class="stat-label">My Burnout Risk</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row g-3 mb-4">
+
+        <div class="col-12 col-lg-7">
+          <div class="card h-100">
+            <div class="card-head">
+              <span class="card-title">Attendance Trend</span>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge badge-info">Last 7 days</span>
+                <select class="filter-select" style="padding:.3rem .6rem;font-size:.78rem" id="attendancePeriod">
+                  <option>Last 7 days</option>
+                  <option>Last 30 days</option>
+                  <option>This month</option>
+                </select>
+              </div>
+            </div>
+            <div style="padding:1.25rem">
+              <canvas id="attendanceTrendChart" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+          <div class="card h-100">
+            <div class="card-head">
+              <span class="card-title">Staff by Department</span>
+              <span class="badge badge-info">Org-wide</span>
+            </div>
+            <div style="padding:1.25rem;display:flex;align-items:center;justify-content:center">
+              <canvas id="departmentChart" height="160"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row g-3">
+
+        <div class="col-12 col-lg-6">
+          <div class="card">
+            <div class="card-head">
+              <span class="card-title">Recent Leave Requests</span>
+              <a href="attendance_leave.html" class="btn-outline" style="font-size:.78rem">View all</a>
+            </div>
+            <div class="recent-list" id="recentLeaveList">
+              <div class="recent-item">
+                <div class="avatar">SO</div>
+                <div class="flex-grow-1">
+                  <div class="recent-name">Dr. Sarah Osei</div>
+                  <div class="recent-sub">Annual Leave · Jul 20 – Jul 27</div>
+                </div>
+                <span class="badge badge-warning">Pending</span>
+              </div>
+              <div class="recent-item">
+                <div class="avatar">JK</div>
+                <div class="flex-grow-1">
+                  <div class="recent-name">Nurse James Kwame</div>
+                  <div class="recent-sub">Sick Leave · Jul 15 – Jul 16</div>
+                </div>
+                <span class="badge badge-warning">Pending</span>
+              </div>
+              <div class="recent-item">
+                <div class="avatar">AB</div>
+                <div class="flex-grow-1">
+                  <div class="recent-name">Dr. Ama Boateng</div>
+                  <div class="recent-sub">Study Leave · Jul 10 – Jul 12</div>
+                </div>
+                <span class="badge badge-success">Approved</span>
+              </div>
+              <div class="recent-item" style="border-bottom:none">
+                <div class="avatar">LM</div>
+                <div class="flex-grow-1">
+                  <div class="recent-name">HR Linda Mensah</div>
+                  <div class="recent-sub">Maternity · Aug 1 – Oct 31</div>
+                </div>
+                <span class="badge badge-warning">Pending</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6" id="burnoutSummaryCard">
+          <div class="card">
+            <div class="card-head">
+              <span class="card-title">Burnout Risk Summary</span>
+              <a href="training_reports.html" class="btn-outline" style="font-size:.78rem">Full report</a>
+            </div>
+            <div style="padding:1.25rem">
+              <div class="burnout-row">
+                <span class="burnout-label">Low Risk</span>
+                <div class="burnout-bar-wrap">
+                  <div class="burnout-bar" style="width:72%;background:var(--success)"></div>
+                </div>
+                <span class="burnout-count">179</span>
+              </div>
+              <div class="burnout-row">
+                <span class="burnout-label">Medium Risk</span>
+                <div class="burnout-bar-wrap">
+                  <div class="burnout-bar" style="width:20%;background:var(--warning)"></div>
+                </div>
+                <span class="burnout-count">62</span>
+              </div>
+              <div class="burnout-row">
+                <span class="burnout-label">High Risk</span>
+                <div class="burnout-bar-wrap">
+                  <div class="burnout-bar" style="width:8%;background:var(--danger)"></div>
+                </div>
+                <span class="burnout-count">7</span>
+              </div>
+              <p class="burnout-note">
+                <i class="bi bi-info-circle me-1"></i>
+                Predictions generated by the ML model based on shift hours, attendance patterns, and leave frequency.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

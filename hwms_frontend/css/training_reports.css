@@ -1,0 +1,135 @@
+/* ============================================================
+   training_reports.css — Training & Reports Page
+   ============================================================ */
+
+/* ── Notification items ── */
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .875rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+  position: relative;
+}
+
+.notif-item:last-child { border-bottom: none; }
+.notif-item:hover { background: #FAFCFB; }
+
+/* Unread: left accent bar + bold text */
+.notif-item.unread {
+  background: var(--info-bg);
+  border-left: 3px solid var(--info);
+}
+
+.notif-item.unread .notif-text { font-weight: 600; color: var(--text); }
+
+.notif-icon {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.notif-text {
+  font-size: .875rem;
+  color: var(--text);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.notif-text.read { color: var(--muted); font-weight: 400; }
+
+.notif-time {
+  font-size: .72rem;
+  color: var(--muted);
+  margin-top: .2rem;
+}
+
+.notif-dot-mark {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--info);
+  flex-shrink: 0;
+  margin-top: .35rem;
+}
+
+/* ── Reports grid ── */
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+/* ── Report card ── */
+.report-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.375rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: .875rem;
+  transition: box-shadow .2s, transform .2s;
+}
+
+.report-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.report-icon {
+  width: 50px; height: 50px;
+  border-radius: .625rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+}
+
+.report-title { font-size: .9rem; font-weight: 700; color: var(--text); }
+.report-desc  { font-size: .78rem; color: var(--muted); line-height: 1.55; }
+
+.report-actions { display: flex; gap: .5rem; margin-top: auto; }
+
+.btn-pdf {
+  flex: 1;
+  padding: .45rem .5rem;
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-sm);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+  transition: all .15s;
+}
+.btn-pdf:hover { background: var(--danger); color: #fff; }
+
+.btn-excel {
+  flex: 1;
+  padding: .45rem .5rem;
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success);
+  border-radius: var(--radius-sm);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+  transition: all .15s;
+}
+.btn-excel:hover { background: var(--success); color: #fff; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+}
+.empty-state i { font-size: 2.5rem; opacity: .3; display: block; margin-bottom: .75rem; }
+.empty-state p { font-size: .875rem; margin: 0; }

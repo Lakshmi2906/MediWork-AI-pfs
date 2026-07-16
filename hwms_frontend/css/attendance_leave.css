@@ -1,0 +1,147 @@
+/* ============================================================
+   attendance_leave.css — Attendance & Leave Page
+   ============================================================ */
+
+/* ── Filter group ── */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.filter-label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Summary chips ── */
+.chip {
+  display: flex;
+  align-items: center;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .35rem .75rem;
+  border-radius: 99px;
+}
+
+.chip-present { background: var(--success-bg); color: var(--success); }
+.chip-absent  { background: var(--danger-bg);  color: var(--danger);  }
+
+/* ── Leave cards grid ── */
+.leave-grid {
+  display: flex;
+  flex-direction: column;
+  gap: .875rem;
+}
+
+/* ── Leave card ── */
+.leave-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.125rem 1.375rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.leave-card:hover { box-shadow: var(--shadow-md); }
+
+.leave-card.resolved { opacity: .72; }
+
+.leave-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: .85rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.leave-body { flex: 1; min-width: 200px; }
+
+.leave-name  { font-size: .9rem; font-weight: 700; color: var(--text); }
+.leave-type      { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+
+.leave-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: .5rem;
+}
+
+.leave-meta-item {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.leave-meta-item i { font-size: .85rem; }
+
+.leave-reason {
+  font-size: .8rem;
+  color: var(--text);
+  margin-top: .5rem;
+  padding: .5rem .75rem;
+  background: var(--body-bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--border);
+}
+
+.leave-actions {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.btn-approve {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success);
+  padding: .4rem .875rem;
+  border-radius: var(--radius-sm);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: all .15s;
+}
+.btn-approve:hover { background: var(--success); color: #fff; }
+
+.btn-reject {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: .4rem .875rem;
+  border-radius: var(--radius-sm);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: all .15s;
+}
+.btn-reject:hover { background: var(--danger); color: #fff; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+}
+.empty-state i { font-size: 2.5rem; opacity: .3; display: block; margin-bottom: .75rem; }
+.empty-state p { font-size: .875rem; margin: 0; }

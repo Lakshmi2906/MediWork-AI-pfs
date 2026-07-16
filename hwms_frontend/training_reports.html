@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Training &amp; Reports - HWMS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="css/layout.css" rel="stylesheet"/>
+  <link href="css/training_reports.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="toast-wrap" id="toastWrap">
+  <i class="bi" id="toastIcon"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+      <div class="brand-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+      <div>
+        <div class="brand-name">HWMS</div>
+        <div class="brand-sub">Healthcare Workforce</div>
+      </div>
+    </a>
+    <nav class="nav-list">
+      <div class="nav-label">Main Menu</div>
+      <a href="dashboard.html" class="nav-item"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a href="workforce.html" class="nav-item"><i class="bi bi-people"></i> Workforce</a>
+      <a href="attendance_leave.html" class="nav-item"><i class="bi bi-calendar-check"></i> Attendance &amp; Leave</a>
+      <a href="training_reports.html" class="nav-item active"><i class="bi bi-mortarboard"></i> Training &amp; Reports</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-avatar" id="sfAvatar">A</div>
+      <div>
+        <div class="user-name" id="sfName">Admin User</div>
+        <div class="user-role" id="sfRole">Admin</div>
+      </div>
+      <button class="logout-btn" id="logoutBtn" aria-label="Logout"><i class="bi bi-box-arrow-right"></i></button>
+    </div>
+  </aside>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="bi bi-list"></i></button>
+        <div>
+          <div class="page-title">Training &amp; Reports</div>
+          <div class="page-sub">Certifications, notifications and exportable reports</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" aria-label="Notifications">
+          <i class="bi bi-bell"></i><span class="notif-dot"></span>
+        </button>
+        <div class="top-avatar" id="topAvatar">A</div>
+        <div class="top-user d-none d-md-block">
+          <div class="top-name" id="topName">Admin User</div>
+          <div class="top-role" id="topRole">Admin</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-body">
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="trainings">
+          <i class="bi bi-mortarboard"></i> Trainings
+        </button>
+        <button class="tab-btn" data-tab="notifications">
+          <i class="bi bi-bell"></i> Notifications
+          <span class="count-badge" id="unreadBadge">2</span>
+        </button>
+        <button class="tab-btn" data-tab="reports">
+          <i class="bi bi-file-earmark-bar-graph"></i> Reports
+        </button>
+      </div>
+
+      <div class="tab-panel active" id="tab-trainings">
+
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input type="search" id="trainSearch" placeholder="Search trainings…"/>
+          </div>
+          <select class="filter-select" id="trainStatusFilter">
+            <option value="">All Status</option>
+            <option>Valid</option>
+            <option>Expiring Soon</option>
+            <option>Expired</option>
+          </select>
+          <button class="btn-main ms-auto" data-bs-toggle="modal" data-bs-target="#addTrainingModal">
+            <i class="bi bi-plus-lg"></i> Add Training
+          </button>
+        </div>
+
+        <div class="table-box">
+          <table class="data-table" id="trainTable">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Training Name</th>
+                <th>Completed</th>
+                <th>Expiry Date</th>
+                <th>Certificate Status</th>
+              </tr>
+            </thead>
+            <tbody id="trainTableBody"></tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="tab-panel" id="tab-notifications">
+
+        <div class="toolbar">
+          <div class="ms-auto d-flex gap-2">
+            <button class="btn-outline" id="markAllReadBtn">
+              <i class="bi bi-check2-all me-1"></i>Mark all as read
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="notifList"></div>
+        </div>
+
+      </div>
+
+      <div class="tab-panel" id="tab-reports">
+        <div class="reports-grid" id="reportsGrid"></div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="modal fade" id="addTrainingModal" tabindex="-1" aria-labelledby="addTrainingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTrainingModalLabel"><i class="bi bi-mortarboard me-2"></i>Add Training Record</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="addTrainingForm" novalidate>
+        <div class="modal-body row g-3">
+          <div class="col-12">
+            <label class="form-label">Employee Name</label>
+            <input type="text" class="form-control" name="employee" required minlength="2" placeholder="Full name"/>
+            <div class="invalid-feedback">Employee name is required.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Training Name</label>
+            <input type="text" class="form-control" name="training_name" required minlength="2" placeholder="e.g. BLS Certification"/>
+            <div class="invalid-feedback">Training name is required.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Completion Date</label>
+            <input type="date" class="form-control" name="completed" required/>
+            <div class="invalid-feedback">Completion date is required.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Expiry Date</label>
+            <input type="date" class="form-control" name="expiry" required/>
+            <div class="invalid-feedback">Expiry date is required.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Department</label>
+            <select class="form-select" name="department" required>
+              <option value="">Select department…</option>
+              <option>Emergency</option><option>ICU</option><option>Surgery</option>
+              <option>Paediatrics</option><option>Radiology</option><option>HR</option>
+            </select>
+            <div class="invalid-feedback">Please select a department.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn-main">
+            <span class="btn-label">Save Training</span>
+            <span class="spinner-border spinner-border-sm d-none" id="addTrainSpinner"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/training_reports.js"></script>
+</body>
+</html>
